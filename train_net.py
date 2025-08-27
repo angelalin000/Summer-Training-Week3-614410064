@@ -249,6 +249,9 @@ def main(args):
 
 def invoke_main() -> None:
     args = default_argument_parser().parse_args()
+    if args.config_file == "":
+        args.config_file = "/mnt/d/Summer_training/Week_3/configs/foggy_resnet50.yaml"
+
     print("Command Line Args:", args)
     launch(
         main,
@@ -261,11 +264,14 @@ def invoke_main() -> None:
 
 
 # +
-dataset_path = 'C:/Users/user/Probabilistic Teacher/ProbabilisticTeacher/data/VOC2007_citytrain' # 這是你的資料集路徑
+# dataset_path = '/mnt/d/Summer_training/Week_3/Cityscapes_dataset/Cityscapes_dataset/VOC2007' # 這是你的資料集路徑
+dataset_path = '/mnt/d/Summer_training/Week_3/foggy_cityscape/foggy_cityscape/VOC2007'
 class_names = ('truck','car','rider','person','train','motorcycle','bicycle','bus')
 
 
 if __name__ == "__main__":
-    register_pascal_voc("cityscapes_train",dataset_path,"trainval","2007",class_names)
-    register_pascal_voc("cityscapes_val",dataset_path,"test","2007",class_names)
+    # register_pascal_voc("cityscapes_train",dataset_path,"trainval","2007",class_names)
+    # register_pascal_voc("cityscapes_val",dataset_path,"test","2007",class_names)
+    register_pascal_voc("foggy_cityscapes_train",dataset_path,"train","2007",class_names)
+    register_pascal_voc("foggy_cityscapes_val",dataset_path,"test","2007",class_names)
     invoke_main()  # pragma: no cover
